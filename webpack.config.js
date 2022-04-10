@@ -24,6 +24,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        fallback: { "crypto":false, "path": false, "fs": false }
     },
     plugins: [
         // new HtmlWebpackPlugin({
