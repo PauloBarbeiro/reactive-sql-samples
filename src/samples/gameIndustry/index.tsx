@@ -1,7 +1,11 @@
 import React, {FC, useEffect, useState} from "react";
+import { Grid, Divider, Container, Header } from 'semantic-ui-react'
 import createSQL from 'reactive-sql-toolkit'
+
+// Components
 import Starter from "./starter";
 import NintendoTable from "./Nintendo";
+import UbisoftTable from "./Ubisoft";
 
 const marketTableStructure = {
     date: 'DATE',
@@ -19,7 +23,6 @@ interface Props {
 
 const GameIndustry: FC<Props> = () => {
     const [isDbReady, setDbReady] = useState<boolean>(false)
-    const [isNintendoReady, setNintendoReady] = useState<boolean>(false)
 
     useEffect(() => {
         const schema: any = {
@@ -47,13 +50,27 @@ const GameIndustry: FC<Props> = () => {
     }
 
     return(
-        <div>
-            <h1>Game Industry from 2010 - 2022</h1>
-            <Starter />
-            <div>
-                <NintendoTable/>
-            </div>
-        </div>
+        <Container>
+            <Grid divided={"vertically"}>
+                <Grid.Row>
+                    <Header as={'h1'}>Game Industry from 2010 - 2022</Header>
+                </Grid.Row>
+                <Grid.Row>
+                    <Starter />
+                </Grid.Row>
+                <Grid.Row columns={3}>
+                    <Grid.Column>
+                        <NintendoTable/>
+                    </Grid.Column>
+                    <Grid.Column>
+                        <UbisoftTable/>
+                    </Grid.Column>
+                    <Grid.Column>
+                        Examples of data queries
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
+        </Container>
     )
 }
 

@@ -1,6 +1,6 @@
 import React, {FC} from "react";
-import { useQuery } from 'reactive-sql-toolkit'
 import {Link} from "react-router-dom";
+import { Container, Button } from 'semantic-ui-react'
 
 interface Props {
     title?: string
@@ -8,7 +8,7 @@ interface Props {
 
 const App: FC<Props> = () => {
     return (
-        <div>
+        <Container>
             <h1>Database Examples</h1>
             <nav
                 style={{
@@ -16,10 +16,10 @@ const App: FC<Props> = () => {
                     paddingBottom: "1rem",
                 }}
             >
-                <Link to="/beatles">Beatles</Link> |{" "}
-                <Link to="/game-industry">Game Industry</Link>
+                <Button as={Link} to="/beatles">Beatles</Button>
+                <Button as={Link} to="/game-industry">Game Industry</Button>
             </nav>
-        </div>
+        </Container>
     )
 }
 

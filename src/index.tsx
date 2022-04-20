@@ -1,4 +1,4 @@
-import { createRoot } from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import React, { lazy } from "react";
 
 import {
@@ -14,8 +14,7 @@ import GameIndustry from "./samples/gameIndustry";
 
 window.addEventListener('load', async () => {
     const container = document.getElementById('root');
-    const root = createRoot(container);
-    root.render(
+    ReactDOM.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />} />
@@ -23,5 +22,6 @@ window.addEventListener('load', async () => {
                 <Route path="game-industry" element={<GameIndustry />} />
             </Routes>
         </BrowserRouter>,
+        container
     )
 })

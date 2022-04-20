@@ -1,4 +1,6 @@
 import React, {FC} from "react";
+import { Container, Header, Menu, Table } from 'semantic-ui-react'
+
 import { useQuery } from 'reactive-sql-toolkit'
 
 interface Props {
@@ -25,27 +27,36 @@ const BeatlesTable: FC<Props> = () => {
     const [data] = result
 
     return (
-        <>
-            <h1>Add a beatle</h1>
-            <table>
-                <caption>Table results</caption>
-                <thead>
-                <tr>
-                    {data.columns.map((column, index) => (<th scope="col" key={index}>{column}</th>))}
-                </tr>
-                </thead>
-                <tbody>
-                {data.values.map(([age, name], index) => (
-                    <tr key={index}>
-                        <th scope="row">{name}</th>
-                        <td>{age}</td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
-            <button onClick={handleAddLennon}>Add Lennon</button>
-            <button onClick={handleAddGeorge}>Add Harrison</button>
-        </>
+        <Container>
+            <Header as={'h1'}>Add a beatle</Header>
+            <Table celled>
+                <Table.Header>
+                    <Table.Row>
+                        {data.columns.map((column, index) => (
+                            <Table.HeaderCell key={index}>{column}</Table.HeaderCell>
+                        ))}
+                    </Table.Row>
+                </Table.Header>
+                <Table.Body>
+                    {data.values.map(([age, name], index) => (
+                        <Table.Row key={index}>
+                            <Table.Cell scope="row">{name}</Table.Cell>
+                            <Table.Cell>{age}</Table.Cell>
+                        </Table.Row>
+                    ))}
+                </Table.Body>
+                <Table.Footer>
+                    <Table.Row>
+                        <Table.HeaderCell colSpan='3'>
+                            <Menu floated='right' attached>
+                                <Menu.Item as='button' onClick={handleAddLennon}>Add Lennon</Menu.Item>
+                                <Menu.Item as='button' onClick={handleAddGeorge}>Add Harrison</Menu.Item>
+                            </Menu>
+                        </Table.HeaderCell>
+                    </Table.Row>
+                </Table.Footer>
+            </Table>
+        </Container>
     )
 }
 
